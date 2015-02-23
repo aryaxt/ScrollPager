@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ScrollPager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-zv-A7f">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQO-QE-UpB" customClass="ScrollPager" customModule="ScrollPager" customModuleProvider="target">
+                                <rect key="frame" x="65" y="68" width="471" height="38"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EWS-Dd-Dui"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                        <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="indicatorHeight">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.93717447916666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="indicatorSizeMatchesTitle" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="EWS-Dd-Dui"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="EWS-Dd-Dui"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="scrollView" destination="cuB-zv-A7f" id="vtZ-Km-dwq"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cuB-zv-A7f" secondAttribute="bottom" id="2Sy-at-XIM"/>
+                            <constraint firstItem="cuB-zv-A7f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7YR-p4-IaP"/>
+                            <constraint firstItem="QQO-QE-UpB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="JFK-rp-eX4">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="cuB-zv-A7f" secondAttribute="trailing" id="bpk-AS-OO4"/>
+                            <constraint firstItem="QQO-QE-UpB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="dbK-ZS-pQb"/>
+                            <constraint firstItem="QQO-QE-UpB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="gHi-rw-64L"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QQO-QE-UpB" secondAttribute="bottom" constant="540" id="oaN-tT-Wel"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QQO-QE-UpB" secondAttribute="trailing" constant="-16" id="tFs-ag-Lhh"/>
+                            <constraint firstItem="cuB-zv-A7f" firstAttribute="top" secondItem="QQO-QE-UpB" secondAttribute="bottom" id="w47-qC-B6j"/>
+                            <constraint firstItem="QQO-QE-UpB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wPG-sN-prQ"/>
+                            <constraint firstAttribute="trailing" secondItem="QQO-QE-UpB" secondAttribute="trailing" id="xCd-GB-vqf"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cuB-zv-A7f"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="7YR-p4-IaP"/>
+                                <exclude reference="bpk-AS-OO4"/>
+                                <exclude reference="w47-qC-B6j"/>
+                                <exclude reference="JFK-rp-eX4"/>
+                                <exclude reference="dbK-ZS-pQb"/>
+                                <exclude reference="gHi-rw-64L"/>
+                                <exclude reference="tFs-ag-Lhh"/>
+                                <exclude reference="wPG-sN-prQ"/>
+                                <exclude reference="xCd-GB-vqf"/>
+                                <exclude reference="2Sy-at-XIM"/>
+                                <exclude reference="oaN-tT-Wel"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="cuB-zv-A7f"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="7YR-p4-IaP"/>
+                                <include reference="bpk-AS-OO4"/>
+                                <include reference="w47-qC-B6j"/>
+                                <include reference="JFK-rp-eX4"/>
+                                <exclude reference="dbK-ZS-pQb"/>
+                                <exclude reference="gHi-rw-64L"/>
+                                <exclude reference="tFs-ag-Lhh"/>
+                                <include reference="wPG-sN-prQ"/>
+                                <include reference="xCd-GB-vqf"/>
+                                <include reference="2Sy-at-XIM"/>
+                                <exclude reference="oaN-tT-Wel"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="scrollPager" destination="QQO-QE-UpB" id="nlG-6l-04s"/>
+                    </connections>
+                </viewController>
+            </objects>
+        </scene>
+    </scenes>
+</document>
