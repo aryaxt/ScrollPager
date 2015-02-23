@@ -8,7 +8,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ScrollPager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -45,7 +44,7 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="indicatorSizeMatchesTitle" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.59999999999999998"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">
@@ -59,8 +58,40 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="scrollView" destination="cuB-zv-A7f" id="vtZ-Km-dwq"/>
+                                    <outlet property="scrollView" destination="cuB-zv-A7f" id="f6B-K7-nTY"/>
                                 </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5s-Er-1u6" customClass="ScrollPager" customModule="ScrollPager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.97647064924240112" green="0.92941182851791382" blue="0.92549026012420654" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Kmj-mZ-xl2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="indicatorSizeMatchesTitle" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="indicatorHeight">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.39999999999999991"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Kmj-mZ-xl2"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Kmj-mZ-xl2"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -70,56 +101,74 @@
                             <constraint firstItem="QQO-QE-UpB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="JFK-rp-eX4">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="I5s-Er-1u6" secondAttribute="bottom" id="Zq3-Xj-4d9"/>
                             <constraint firstAttribute="trailing" secondItem="cuB-zv-A7f" secondAttribute="trailing" id="bpk-AS-OO4"/>
                             <constraint firstItem="QQO-QE-UpB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="dbK-ZS-pQb"/>
                             <constraint firstItem="QQO-QE-UpB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="gHi-rw-64L"/>
+                            <constraint firstAttribute="trailing" secondItem="I5s-Er-1u6" secondAttribute="trailing" id="kUV-Fh-4eg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QQO-QE-UpB" secondAttribute="bottom" constant="540" id="oaN-tT-Wel"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QQO-QE-UpB" secondAttribute="trailing" constant="-16" id="tFs-ag-Lhh"/>
+                            <constraint firstItem="I5s-Er-1u6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vKM-q3-pRK"/>
                             <constraint firstItem="cuB-zv-A7f" firstAttribute="top" secondItem="QQO-QE-UpB" secondAttribute="bottom" id="w47-qC-B6j"/>
                             <constraint firstItem="QQO-QE-UpB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wPG-sN-prQ"/>
                             <constraint firstAttribute="trailing" secondItem="QQO-QE-UpB" secondAttribute="trailing" id="xCd-GB-vqf"/>
+                            <constraint firstItem="I5s-Er-1u6" firstAttribute="top" secondItem="cuB-zv-A7f" secondAttribute="bottom" constant="8" id="ye2-Dt-hIR">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="cuB-zv-A7f"/>
+                                <exclude reference="I5s-Er-1u6"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="7YR-p4-IaP"/>
-                                <exclude reference="bpk-AS-OO4"/>
-                                <exclude reference="w47-qC-B6j"/>
                                 <exclude reference="JFK-rp-eX4"/>
                                 <exclude reference="dbK-ZS-pQb"/>
                                 <exclude reference="gHi-rw-64L"/>
                                 <exclude reference="tFs-ag-Lhh"/>
                                 <exclude reference="wPG-sN-prQ"/>
                                 <exclude reference="xCd-GB-vqf"/>
+                                <exclude reference="7YR-p4-IaP"/>
+                                <exclude reference="bpk-AS-OO4"/>
+                                <exclude reference="w47-qC-B6j"/>
+                                <exclude reference="kUV-Fh-4eg"/>
+                                <exclude reference="vKM-q3-pRK"/>
+                                <exclude reference="ye2-Dt-hIR"/>
                                 <exclude reference="2Sy-at-XIM"/>
+                                <exclude reference="Zq3-Xj-4d9"/>
                                 <exclude reference="oaN-tT-Wel"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="cuB-zv-A7f"/>
+                                <include reference="I5s-Er-1u6"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="7YR-p4-IaP"/>
-                                <include reference="bpk-AS-OO4"/>
-                                <include reference="w47-qC-B6j"/>
                                 <include reference="JFK-rp-eX4"/>
                                 <exclude reference="dbK-ZS-pQb"/>
                                 <exclude reference="gHi-rw-64L"/>
                                 <exclude reference="tFs-ag-Lhh"/>
                                 <include reference="wPG-sN-prQ"/>
                                 <include reference="xCd-GB-vqf"/>
-                                <include reference="2Sy-at-XIM"/>
+                                <include reference="7YR-p4-IaP"/>
+                                <include reference="bpk-AS-OO4"/>
+                                <include reference="w47-qC-B6j"/>
+                                <include reference="kUV-Fh-4eg"/>
+                                <include reference="vKM-q3-pRK"/>
+                                <include reference="ye2-Dt-hIR"/>
+                                <exclude reference="2Sy-at-XIM"/>
+                                <include reference="Zq3-Xj-4d9"/>
                                 <exclude reference="oaN-tT-Wel"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="scrollPager" destination="QQO-QE-UpB" id="nlG-6l-04s"/>
+                        <outlet property="secondScrollPager" destination="I5s-Er-1u6" id="lI3-iz-SC4"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>

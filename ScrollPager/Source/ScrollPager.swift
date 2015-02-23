@@ -9,7 +9,7 @@
 import UIKit
 
 @objc public protocol ScrollPagerDelegate: NSObjectProtocol {
-	func scrollPager(scrollPager: ScrollPager, changedIndex: Int)
+	optional func scrollPager(scrollPager: ScrollPager, changedIndex: Int)
 }
 
 @IBDesignable public class ScrollPager: UIView, UIScrollViewDelegate{
@@ -97,7 +97,7 @@ import UIKit
 	
 	private func initialize() {
 		#if TARGET_INTERFACE_BUILDER
-			addSegments(["Segment 1", "Segment 2", "Segment 3"])
+			addSegments(["One", "Two", "Three", "Four"])
 		#endif
 	}
 	
@@ -115,18 +115,26 @@ import UIKit
 	public func addSegments(segments: [(title: String, view: UIView)]) {
 		
 		addButtons(segments.map { $0.title })
-		
-		for i in 0..<segments.count {
-			let view = segments[i].view
-			scrollView!.addSubview(view)
-			views.append(view)
-		}
+		addViews(segments.map { $0.view })
 		
 		redrawComponents()
 	}
 	
-	public func addSegments(segments: [String]) {
-		addButtons(segments)
+	public func addSegments(segments: [(image: UIImage, view: UIView)]) {
+		
+		addButtons(segments.map { $0.image })
+		addViews(segments.map { $0.view })
+		
+		redrawComponents()
+	}
+	
+	public func addSegments(segmentTitles: [String]) {
+		addButtons(segmentTitles)
+		redrawComponents()
+	}
+	
+	public func addSegments(segmentImages: [UIImage]) {
+		addButtons(segmentImages)
 		redrawComponents()
 	}
 	
@@ -138,19 +146,37 @@ import UIKit
 	
 	// MARK: - Private -
 	
-	private func addButtons(buttonTitles: [String]) {
+	private func addViews(segmentViews: [UIView]) {
+		for view in scrollView!.subviews {
+			view.removeFromSuperview()
+		}
+		
+		for i in 0..<segmentViews.count {
+			let view = segmentViews[i]
+			scrollView!.addSubview(view)
+			views.append(view)
+		}
+	}
+	
+	private func addButtons(titleOrImages: [AnyObject]) {
 		for button in buttons {
 			button.removeFromSuperview()
 		}
 		
 		buttons.removeAll(keepCapacity: true)
 		
-		for i in 0..<buttonTitles.count {
+		for i in 0..<titleOrImages.count {
 			let button = UIButton.buttonWithType(.Custom) as UIButton
 			button.tag = i
-			button.setTitle(buttonTitles[i], forState: .Normal)
 			button.addTarget(self, action: "buttonSelected:", forControlEvents: .TouchUpInside)
 			buttons.append(button)
+			
+			if let title = titleOrImages[i] as? String {
+				button.setTitle(title, forState: .Normal)
+			}
+			else if let image = titleOrImages[i] as? UIImage {
+				button.setImage(image, forState: .Normal)
+			}
 			
 			addSubview(button)
 			addSubview(indicatorView)
@@ -180,7 +206,10 @@ import UIKit
 			}
 			
 			}, completion: { [weak self] finished in
-				self!.animationInProgress = false
+				// Storyboard crashes on here for some odd reasons, do a nil check
+				if self != nil {
+					self!.animationInProgress = false
+				}
 		})
 	}
 	
@@ -190,7 +219,7 @@ import UIKit
 		}
 		
 		let width = frame.size.width / CGFloat(buttons.count)
-		let height = frame.size.height
+		let height = frame.size.height - indicatorHeight
 		
 		for i in 0..<buttons.count {
 			let button = buttons[i]
@@ -215,7 +244,7 @@ import UIKit
 			return
 		}
 		
-		delegate.scrollPager(self, changedIndex: sender.tag)
+		delegate?.scrollPager?(self, changedIndex: sender.tag)
 		
 		setSelectedIndex(sender.tag, animated: true, moveScrollView: true)
 	}
@@ -232,7 +261,7 @@ import UIKit
 			
 			if Int(page) != selectedIndex {
 				setSelectedIndex(Int(page), animated: true, moveScrollView: false)
-				delegate.scrollPager(self, changedIndex: Int(page))
+				delegate?.scrollPager?(self, changedIndex: Int(page))
 			}
 		}
 	}

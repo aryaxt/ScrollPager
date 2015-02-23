@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, ScrollPagerDelegate {
 
 	@IBOutlet var scrollPager: ScrollPager!
+	@IBOutlet var secondScrollPager: ScrollPager!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -41,6 +42,14 @@ class ViewController: UIViewController, ScrollPagerDelegate {
 			("Public Feed", secondView),
 			("Profile", thirdView),
 			("One More", fourthView)
+			])
+		
+		secondScrollPager.addSegments([
+			UIImage(named: "envelope")!,
+			UIImage(named: "home")!,
+			UIImage(named: "like")!,
+			UIImage(named: "message")!,
+			UIImage(named: "notes")!
 			])
 	}
 	
