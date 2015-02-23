@@ -1,2 +1,2 @@
 # ScrollPager
-A scroll pager similar to the one in
+A scroll pager similar to the one in Flipboard
