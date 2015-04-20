@@ -1,4 +1,4 @@
-# ScrollPager
+# ScrollPager [![Version](http://cocoapod-badges.herokuapp.com/v/ScrollPager/badge.png)](http://cocoadocs.org/docsets/ScrollPager)
 A scroll pager similar to the one in Flipboard. The control creates a tabbar given a title or an image, and has the option of connecting to a UIScrollView to automatically present given views and manage paging between these views
 
 ![alt tag](https://raw.github.com/aryaxt/ScrollPager/master/scrollPager.png)
