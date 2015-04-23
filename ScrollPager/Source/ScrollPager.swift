@@ -50,57 +50,39 @@ import UIKit
 	}
 	
 	@IBInspectable public var textColor: UIColor = UIColor.lightGrayColor() {
-		didSet{
-			redrawComponents()
-		}
+		didSet { redrawComponents() }
 	}
 	
 	@IBInspectable public var selectedTextColor: UIColor = UIColor.darkGrayColor() {
-		didSet{
-			redrawComponents()
-		}
+		didSet { redrawComponents() }
 	}
 	
 	@IBInspectable public var font: UIFont = UIFont.systemFontOfSize(13) {
-		didSet{
-			redrawComponents()
-		}
+		didSet { redrawComponents() }
 	}
 
 	@IBInspectable public var selectedFont: UIFont = UIFont.boldSystemFontOfSize(13) {
-		didSet{
-			redrawComponents()
-		}
+		didSet { redrawComponents() }
 	}
 	
 	@IBInspectable public var indicatorColor: UIColor = UIColor.blackColor() {
-		didSet{
-			indicatorView.backgroundColor = indicatorColor
-		}
+		didSet { indicatorView.backgroundColor = indicatorColor }
 	}
 	
 	@IBInspectable public var indicatorSizeMatchesTitle: Bool = false {
-		didSet{
-			redrawComponents()
-		}
+		didSet { redrawComponents() }
 	}
 	
 	@IBInspectable public var indicatorHeight: CGFloat = 2.0 {
-		didSet{
-			redrawComponents()
-		}
+		didSet { redrawComponents() }
 	}
 	
 	@IBInspectable public var borderColor: UIColor? {
-		didSet{
-			self.layer.borderColor = borderColor?.CGColor
-		}
+		didSet { self.layer.borderColor = borderColor?.CGColor }
 	}
 	
 	@IBInspectable public var borderWidth: CGFloat = 0 {
-		didSet{
-			self.layer.borderWidth = borderWidth
-		}
+		didSet { self.layer.borderWidth = borderWidth }
 	}
 	
 	@IBInspectable public var animationDuration: CGFloat = 0.2
@@ -119,7 +101,7 @@ import UIKit
 	
 	private func initialize() {
 		#if TARGET_INTERFACE_BUILDER
-			addSegments(["One", "Two", "Three", "Four"])
+			addSegmentsWithTitles(["One", "Two", "Three", "Four"])
 		#endif
 	}
 	
@@ -134,7 +116,7 @@ import UIKit
 	
 	// MARK: - Public Methods -
 	
-	public func addSegments(segments: [(title: String, view: UIView)]) {
+	public func addSegmentsWithTitlesAndViews(segments: [(title: String, view: UIView)]) {
 		
 		addButtons(segments.map { $0.title })
 		addViews(segments.map { $0.view })
@@ -142,7 +124,7 @@ import UIKit
 		redrawComponents()
 	}
 	
-	public func addSegments(segments: [(image: UIImage, view: UIView)]) {
+	public func addSegmentsWithImagesAndViews(segments: [(image: UIImage, view: UIView)]) {
 		
 		addButtons(segments.map { $0.image })
 		addViews(segments.map { $0.view })
@@ -150,12 +132,12 @@ import UIKit
 		redrawComponents()
 	}
 	
-	public func addSegments(segmentTitles: [String]) {
+	public func addSegmentsWithTitles(segmentTitles: [String]) {
 		addButtons(segmentTitles)
 		redrawComponents()
 	}
 	
-	public func addSegments(segmentImages: [UIImage]) {
+	public func addSegmentsWithImages(segmentImages: [UIImage]) {
 		addButtons(segmentImages)
 		redrawComponents()
 	}
@@ -188,7 +170,7 @@ import UIKit
 		buttons.removeAll(keepCapacity: true)
 		
 		for i in 0..<titleOrImages.count {
-			let button = UIButton.buttonWithType(.Custom) as UIButton
+			let button = UIButton.buttonWithType(.Custom) as! UIButton
 			button.tag = i
 			button.addTarget(self, action: "buttonSelected:", forControlEvents: .TouchUpInside)
 			buttons.append(button)
