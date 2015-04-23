@@ -39,7 +39,7 @@ import UIKit
 	private var buttons = [UIButton]()
 	private var views = [UIView]()
 	private var animationInProgress = false
-	@IBOutlet public var delegate: ScrollPagerDelegate!
+	@IBOutlet public weak var delegate: ScrollPagerDelegate!
 	
 	@IBOutlet public var scrollView: UIScrollView? {
 		didSet {
