@@ -190,7 +190,7 @@ import UIKit
 	private func moveToIndex(index: Int, animated: Bool, moveScrollView: Bool) {
 		animationInProgress = true
 		
-		UIView.animateWithDuration(NSTimeInterval(animationDuration), delay: 0.0, options: .CurveEaseOut, animations: { [weak self] in
+        UIView.animateWithDuration(animated ? NSTimeInterval(animationDuration) : 0.0, delay: 0.0, options: .CurveEaseOut, animations: { [weak self] in
 			
 			let width = self!.frame.size.width / CGFloat(self!.buttons.count)
 			let button = self!.buttons[index]
