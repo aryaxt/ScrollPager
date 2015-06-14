@@ -197,6 +197,7 @@ import UIKit
         UIView.animateWithDuration(animated ? NSTimeInterval(animationDuration) : 0.0, delay: 0.0, options: .CurveEaseOut, animations: { [weak self] in
 			
 			let width = self!.frame.size.width / CGFloat(self!.buttons.count)
+			let height = self!.frame.size.height - self!.indicatorHeight
 			let button = self!.buttons[index]
 			
 			self?.redrawButtons()
@@ -214,6 +215,13 @@ import UIKit
 			if self!.scrollView != nil && moveScrollView {
 				self!.scrollView?.contentOffset = CGPointMake(CGFloat(index) * self!.scrollView!.frame.size.width, 0)
 			}
+			
+			for i in 0..<self!.buttons.count {
+        			let button = self!.buttons[i]
+        			button.frame = CGRectMake(width * CGFloat(i), 0, width, height)
+        			button.setTitleColor((i == self!.selectedIndex) ? self!.selectedTextColor : self!.textColor, forState: .Normal)
+        			button.titleLabel?.font = (i == self!.selectedIndex) ? self!.selectedFont : self!.font
+      			}
 			
 			}, completion: { [weak self] finished in
 				// Storyboard crashes on here for some odd reasons, do a nil check
