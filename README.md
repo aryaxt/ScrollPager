@@ -11,7 +11,7 @@ OPTIONAL: If you like to use a scroll view assign the outlet to a scrollView
 
 Tab with text
 ```swift
-scrollPager.addSegmentsWithTitles(["Home", "Public Feed", "Profile");
+scrollPager.addSegmentsWithTitles(["Home", "Public Feed", "Profile"]);
 ```
 
 Tab with images and views (will automatically add paging to scrollview and displays the views accordingly)
