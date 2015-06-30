@@ -6,11 +6,12 @@ A scroll pager similar to the one in Flipboard. The control creates a tabbar giv
 Usage:
 
 Drag and drop a UIView into storyboard or xib
+
 OPTIONAL: If you like to use a scroll view assign the outlet to a scrollView
 
 Tab with text
 ```swift
-scrollPager.addSegments(["Home", "Public Feed", "Profile");
+scrollPager.addSegmentsWithTitles(["Home", "Public Feed", "Profile");
 ```
 
 Tab with images and views (will automatically add paging to scrollview and displays the views accordingly)
