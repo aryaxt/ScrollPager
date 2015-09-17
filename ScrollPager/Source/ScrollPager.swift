@@ -142,13 +142,17 @@ import UIKit
 		redrawComponents()
 	}
 	
-	public func setSelectedIndex(index: Int, animated: Bool, moveScrollView: Bool) {
+	public func setSelectedIndex(index: Int, animated: Bool) {
+		setSelectedIndex(index, animated: animated, moveScrollView: true)
+	}
+	
+	// MARK: - Private -
+	
+	private func setSelectedIndex(index: Int, animated: Bool, moveScrollView: Bool) {
 		selectedIndex = index
 		
 		moveToIndex(index, animated: animated, moveScrollView: moveScrollView)
 	}
-	
-	// MARK: - Private -
 	
 	private func addViews(segmentViews: [UIView]) {
 		for view in scrollView!.subviews {
@@ -195,6 +199,8 @@ import UIKit
 			let width = self!.frame.size.width / CGFloat(self!.buttons.count)
 			let button = self!.buttons[index]
 			
+			self?.redrawButtons()
+			
 			if self!.indicatorSizeMatchesTitle {
 				let string: NSString? = button.titleLabel?.text as NSString?
 				let size = string?.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
@@ -218,6 +224,22 @@ import UIKit
 	}
 	
 	private func redrawComponents() {
+		redrawButtons()
+		
+		if buttons.count > 0 {
+			moveToIndex(selectedIndex, animated: false, moveScrollView: false)
+		}
+		
+		if scrollView != nil {
+			scrollView!.contentSize = CGSizeMake(scrollView!.frame.size.width * CGFloat(buttons.count), scrollView!.frame.size.height)
+			
+			for i in 0..<views.count {
+				views[i].frame = CGRectMake(scrollView!.frame.size.width * CGFloat(i), 0, scrollView!.frame.size.width, scrollView!.frame.size.height)
+			}
+		}
+	}
+	
+	private func redrawButtons() {
 		if buttons.count == 0 {
 			return
 		}
@@ -230,16 +252,6 @@ import UIKit
 			button.frame = CGRectMake(width * CGFloat(i), 0, width, height)
 			button.setTitleColor((i == selectedIndex) ? selectedTextColor : textColor, forState: .Normal)
 			button.titleLabel?.font = (i == selectedIndex) ? selectedFont : font
-		}
-		
-		moveToIndex(selectedIndex, animated: false, moveScrollView: false)
-		
-		if scrollView != nil {
-			scrollView!.contentSize = CGSizeMake(scrollView!.frame.size.width * CGFloat(buttons.count), scrollView!.frame.size.height)
-			
-			for i in 0..<views.count {
-				views[i].frame = CGRectMake(scrollView!.frame.size.width * CGFloat(i), 0, scrollView!.frame.size.width, scrollView!.frame.size.height)
-			}
 		}
 	}
 	
