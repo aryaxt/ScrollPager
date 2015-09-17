@@ -56,7 +56,7 @@ class ViewController: UIViewController, ScrollPagerDelegate {
 	// MARK: - ScrollPagerDelegate -
 	
 	func scrollPager(scrollPager: ScrollPager, changedIndex: Int) {
-		println("scrollPager index changed: \(changedIndex)")
+		print("scrollPager index changed: \(changedIndex)")
 	}
 
 }

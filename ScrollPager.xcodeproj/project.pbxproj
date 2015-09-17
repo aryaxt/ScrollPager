@@ -167,6 +167,8 @@
 		15F971731A9A86E400169B7E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Aryan Ghassemi";
 				TargetAttributes = {
@@ -419,6 +421,7 @@
 				15F9719C1A9A86E400169B7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15F9719D1A9A86E400169B7E /* Build configuration list for PBXNativeTarget "ScrollPagerTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +430,7 @@
 				15F9719F1A9A86E400169B7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
