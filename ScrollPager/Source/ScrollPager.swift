@@ -89,8 +89,8 @@ import UIKit
 	
 	// MARK: - Initializarion -
 	
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+	public required init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)!
 		initialize()
 	}
 	
@@ -174,7 +174,7 @@ import UIKit
 		buttons.removeAll(keepCapacity: true)
 		
 		for i in 0..<titleOrImages.count {
-			let button = UIButton(type: .Custom)
+			let button = UIButton(type: UIButtonType.Custom)
 			button.tag = i
 			button.addTarget(self, action: "buttonSelected:", forControlEvents: .TouchUpInside)
 			buttons.append(button)
