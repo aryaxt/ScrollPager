@@ -88,11 +88,10 @@ import UIKit
 	@IBInspectable public var animationDuration: CGFloat = 0.2
 	
 	// MARK: - Initializarion -
-	
-	public required init(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)!
-		initialize()
-	}
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        initialize()
+    }
 	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
