@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = 'ScrollPager'
-    s.version = '0.4'
+    s.version = '0.5'
     s.summary = 'A fully featured scroll pager similar to the one in flipboard, fully configurable through storyboard'
     s.homepage = 'https://github.com/aryaxt/ScrollPager'
     s.license = {

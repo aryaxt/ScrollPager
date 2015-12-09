@@ -88,11 +88,10 @@ import UIKit
 	@IBInspectable public var animationDuration: CGFloat = 0.2
 	
 	// MARK: - Initializarion -
-	
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		initialize()
-	}
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        initialize()
+    }
 	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -174,7 +173,7 @@ import UIKit
 		buttons.removeAll(keepCapacity: true)
 		
 		for i in 0..<titleOrImages.count {
-			let button = UIButton(type: .Custom)
+			let button = UIButton(type: UIButtonType.Custom)
 			button.tag = i
 			button.addTarget(self, action: "buttonSelected:", forControlEvents: .TouchUpInside)
 			buttons.append(button)
