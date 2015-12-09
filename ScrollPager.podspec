@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
       :file => 'License.txt'
     }
     s.author = {'Aryan Ghassemi' => 'https://github.com/aryaxt/ScrollPager'}
-    s.source = {:git => 'https://github.com/aryaxt/ScrollPager.git', :tag => '0.4'}
+    s.source = {:git => 'https://github.com/aryaxt/ScrollPager.git', :tag => '0.5'}
     s.platform = :ios, '8.0'
     s.source_files = 'ScrollPager/Source/*.{swift}'
     s.framework = 'Foundation', 'UIKit'
