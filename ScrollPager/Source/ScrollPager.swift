@@ -76,6 +76,10 @@ import UIKit
 	@IBInspectable public var indicatorHeight: CGFloat = 2.0 {
 		didSet { redrawComponents() }
 	}
+    
+    @IBInspectable public var indicatorHeightShouldAdjustButtonHeight: Bool = true {
+        didSet { redrawComponents() }
+    }
 	
 	@IBInspectable public var borderColor: UIColor? {
 		didSet { self.layer.borderColor = borderColor?.CGColor }
@@ -187,8 +191,8 @@ import UIKit
 			}
 			
 			addSubview(button)
-			addSubview(indicatorView)
-		}
+        }
+        insertSubview(indicatorView, belowSubview: buttons.first!)
 	}
 	
 	private func moveToIndex(index: Int, animated: Bool, moveScrollView: Bool) {
@@ -245,7 +249,7 @@ import UIKit
 		}
 		
 		let width = frame.size.width / CGFloat(buttons.count)
-		let height = frame.size.height - indicatorHeight
+        let height = frame.size.height - (indicatorHeightShouldAdjustButtonHeight ? indicatorHeight : 0)
 		
 		for i in 0..<buttons.count {
 			let button = buttons[i]
