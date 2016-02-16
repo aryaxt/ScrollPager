@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController, ScrollPagerDelegate {
 
 	@IBOutlet var scrollPager: ScrollPager!
-    @IBOutlet var secondScrollPager: ScrollPager!
-    @IBOutlet var thirdScrollPager: ScrollPager!
+	@IBOutlet var secondScrollPager: ScrollPager!
+	@IBOutlet var thirdScrollPager: ScrollPager!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,13 +51,13 @@ class ViewController: UIViewController, ScrollPagerDelegate {
 			UIImage(named: "like")!,
 			UIImage(named: "message")!,
 			UIImage(named: "notes")!
-            ])
-        
-        thirdScrollPager.addSegmentsWithTitles([
-            "Family",
-            "Friends",
-            "Colleagues"
-            ])
+			])
+		
+		thirdScrollPager.addSegmentsWithTitles([
+			"Family",
+			"Friends",
+			"Colleagues"
+			])
 	}
 	
 	// MARK: - ScrollPagerDelegate -
