@@ -176,7 +176,7 @@ import UIKit
 		for i in 0..<titleOrImages.count {
 			let button = UIButton(type: UIButtonType.Custom)
 			button.tag = i
-			button.addTarget(self, action: "buttonSelected:", forControlEvents: .TouchUpInside)
+			button.addTarget(self, action: #selector(ScrollPager.buttonSelected(_:)), forControlEvents: .TouchUpInside)
 			buttons.append(button)
 			
 			if let title = titleOrImages[i] as? String {
