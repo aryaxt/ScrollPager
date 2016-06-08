@@ -155,13 +155,15 @@ import UIKit
 	}
 	
 	private func addViews(segmentViews: [UIView]) {
-		for view in scrollView!.subviews {
+		guard let scrollView = scrollView else { fatalError("trying to add views but the scrollView is nil") }
+		
+		for view in scrollView.subviews {
 			view.removeFromSuperview()
 		}
 		
 		for i in 0..<segmentViews.count {
 			let view = segmentViews[i]
-			scrollView!.addSubview(view)
+			scrollView.addSubview(view)
 			views.append(view)
 		}
 	}
@@ -196,30 +198,30 @@ import UIKit
 		
         UIView.animateWithDuration(animated ? NSTimeInterval(animationDuration) : 0.0, delay: 0.0, options: .CurveEaseOut, animations: { [weak self] in
 			
-			let width = self!.frame.size.width / CGFloat(self!.buttons.count)
-			let button = self!.buttons[index]
+			guard let strongSelf = self else { return }
+			let width = strongSelf.frame.size.width / CGFloat(strongSelf.buttons.count)
+			let button = strongSelf.buttons[index]
 			
-			self?.redrawButtons()
+			strongSelf.redrawButtons()
 			
-			if self!.indicatorSizeMatchesTitle {
-				let string: NSString? = button.titleLabel?.text as NSString?
-				let size = string?.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
-				let x = width * CGFloat(index) + ((width - size!.width) / CGFloat(2))
-				self!.indicatorView.frame = CGRectMake(x, self!.frame.size.height - self!.indicatorHeight, size!.width, self!.indicatorHeight)
+			if strongSelf.indicatorSizeMatchesTitle {
+				guard let string = button.titleLabel?.text else { fatalError("missing title on button, title is required for width calculation") }
+				guard let font = button.titleLabel?.font else { fatalError("missing dont on button, title is required for width calculation")  }
+				let size = string.sizeWithAttributes([NSFontAttributeName: font])
+				let x = width * CGFloat(index) + ((width - size.width) / CGFloat(2))
+				strongSelf.indicatorView.frame = CGRectMake(x, strongSelf.frame.size.height - strongSelf.indicatorHeight, size.width, strongSelf.indicatorHeight)
 			}
 			else {
-				self!.indicatorView.frame = CGRectMake(width * CGFloat(index), self!.frame.size.height - self!.indicatorHeight, button.frame.size.width, self!.indicatorHeight)
+				strongSelf.indicatorView.frame = CGRectMake(width * CGFloat(index), strongSelf.frame.size.height - strongSelf.indicatorHeight, button.frame.size.width, strongSelf.indicatorHeight)
 			}
 			
-			if self!.scrollView != nil && moveScrollView {
-				self!.scrollView?.contentOffset = CGPointMake(CGFloat(index) * self!.scrollView!.frame.size.width, 0)
+			if let scrollView = strongSelf.scrollView where moveScrollView {
+				scrollView.contentOffset = CGPointMake(CGFloat(index) * scrollView.frame.size.width, 0)
 			}
 			
 			}, completion: { [weak self] finished in
 				// Storyboard crashes on here for some odd reasons, do a nil check
-				if self != nil {
-					self!.animationInProgress = false
-				}
+				self?.animationInProgress = false
 		})
 	}
 	
@@ -230,11 +232,11 @@ import UIKit
 			moveToIndex(selectedIndex, animated: false, moveScrollView: false)
 		}
 		
-		if scrollView != nil {
-			scrollView!.contentSize = CGSizeMake(scrollView!.frame.size.width * CGFloat(buttons.count), scrollView!.frame.size.height)
+		if let scrollView = scrollView {
+			scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * CGFloat(buttons.count), scrollView.frame.size.height)
 			
 			for i in 0..<views.count {
-				views[i].frame = CGRectMake(scrollView!.frame.size.width * CGFloat(i), 0, scrollView!.frame.size.width, scrollView!.frame.size.height)
+				views[i].frame = CGRectMake(scrollView.frame.size.width * CGFloat(i), 0, scrollView.frame.size.width, scrollView.frame.size.height)
 			}
 		}
 	}
