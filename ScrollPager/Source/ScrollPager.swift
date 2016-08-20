@@ -29,7 +29,7 @@
 import UIKit
 
 @objc public protocol ScrollPagerDelegate: NSObjectProtocol {
-	optional func scrollPager(scrollPager: ScrollPager, changedIndex: Int)
+	@objc optional func scrollPager(scrollPager: ScrollPager, changedIndex: Int)
 }
 
 @IBDesignable public class ScrollPager: UIView, UIScrollViewDelegate{
@@ -44,28 +44,28 @@ import UIKit
 	@IBOutlet public var scrollView: UIScrollView? {
 		didSet {
 			scrollView?.delegate = self
-			scrollView?.pagingEnabled = true
+			scrollView?.isPagingEnabled = true
 			scrollView?.showsHorizontalScrollIndicator = false
 		}
 	}
 	
-	@IBInspectable public var textColor: UIColor = UIColor.lightGrayColor() {
+	@IBInspectable public var textColor: UIColor = UIColor.lightGray {
 		didSet { redrawComponents() }
 	}
 	
-	@IBInspectable public var selectedTextColor: UIColor = UIColor.darkGrayColor() {
+	@IBInspectable public var selectedTextColor: UIColor = UIColor.darkGray {
 		didSet { redrawComponents() }
 	}
 	
-	@IBInspectable public var font: UIFont = UIFont.systemFontOfSize(13) {
+	@IBInspectable public var font: UIFont = UIFont.systemFont(ofSize: 13) {
 		didSet { redrawComponents() }
 	}
 
-	@IBInspectable public var selectedFont: UIFont = UIFont.boldSystemFontOfSize(13) {
+	@IBInspectable public var selectedFont: UIFont = UIFont.boldSystemFont(ofSize: 13) {
 		didSet { redrawComponents() }
 	}
 	
-	@IBInspectable public var indicatorColor: UIColor = UIColor.blackColor() {
+	@IBInspectable public var indicatorColor: UIColor = UIColor.black {
 		didSet { indicatorView.backgroundColor = indicatorColor }
 	}
 	
@@ -78,7 +78,7 @@ import UIKit
 	}
 	
 	@IBInspectable public var borderColor: UIColor? {
-		didSet { self.layer.borderColor = borderColor?.CGColor }
+		didSet { self.layer.borderColor = borderColor?.cgColor }
 	}
 	
 	@IBInspectable public var borderWidth: CGFloat = 0 {
@@ -118,32 +118,32 @@ import UIKit
 	
 	public func addSegmentsWithTitlesAndViews(segments: [(title: String, view: UIView)]) {
 		
-		addButtons(segments.map { $0.title })
-		addViews(segments.map { $0.view })
+		addButtons(titleOrImages: segments.map { $0.title as AnyObject })
+		addViews(segmentViews: segments.map { $0.view })
 		
 		redrawComponents()
 	}
 	
 	public func addSegmentsWithImagesAndViews(segments: [(image: UIImage, view: UIView)]) {
 		
-		addButtons(segments.map { $0.image })
-		addViews(segments.map { $0.view })
+		addButtons(titleOrImages: segments.map { $0.image })
+		addViews(segmentViews: segments.map { $0.view })
 		
 		redrawComponents()
 	}
 	
 	public func addSegmentsWithTitles(segmentTitles: [String]) {
-		addButtons(segmentTitles)
+		addButtons(titleOrImages: segmentTitles as [AnyObject])
 		redrawComponents()
 	}
 	
 	public func addSegmentsWithImages(segmentImages: [UIImage]) {
-		addButtons(segmentImages)
+		addButtons(titleOrImages: segmentImages)
 		redrawComponents()
 	}
 	
 	public func setSelectedIndex(index: Int, animated: Bool) {
-		setSelectedIndex(index, animated: animated, moveScrollView: true)
+		setSelectedIndex(index: index, animated: animated, moveScrollView: true)
 	}
 	
 	// MARK: - Private -
@@ -151,7 +151,7 @@ import UIKit
 	private func setSelectedIndex(index: Int, animated: Bool, moveScrollView: Bool) {
 		selectedIndex = index
 		
-		moveToIndex(index, animated: animated, moveScrollView: moveScrollView)
+		moveToIndex(index: index, animated: animated, moveScrollView: moveScrollView)
 	}
 	
 	private func addViews(segmentViews: [UIView]) {
@@ -173,19 +173,19 @@ import UIKit
 			button.removeFromSuperview()
 		}
 		
-		buttons.removeAll(keepCapacity: true)
+		buttons.removeAll()
 		
 		for i in 0..<titleOrImages.count {
-			let button = UIButton(type: UIButtonType.Custom)
+			let button = UIButton(type: .custom)
 			button.tag = i
-			button.addTarget(self, action: #selector(ScrollPager.buttonSelected(_:)), forControlEvents: .TouchUpInside)
+			button.addTarget(self, action: #selector(ScrollPager.buttonSelected(sender:)), for: .touchUpInside)
 			buttons.append(button)
 			
 			if let title = titleOrImages[i] as? String {
-				button.setTitle(title, forState: .Normal)
+				button.setTitle(title, for: .normal)
 			}
 			else if let image = titleOrImages[i] as? UIImage {
-				button.setImage(image, forState: .Normal)
+				button.setImage(image, for: .normal)
 			}
 			
 			addSubview(button)
@@ -196,7 +196,7 @@ import UIKit
 	private func moveToIndex(index: Int, animated: Bool, moveScrollView: Bool) {
 		animationInProgress = true
 		
-        UIView.animateWithDuration(animated ? NSTimeInterval(animationDuration) : 0.0, delay: 0.0, options: .CurveEaseOut, animations: { [weak self] in
+        UIView.animate(withDuration: animated ? TimeInterval(animationDuration) : 0.0, delay: 0.0, options: .curveEaseOut, animations: { [weak self] in
 			
 			guard let strongSelf = self else { return }
 			let width = strongSelf.frame.size.width / CGFloat(strongSelf.buttons.count)
@@ -207,16 +207,18 @@ import UIKit
 			if strongSelf.indicatorSizeMatchesTitle {
 				guard let string = button.titleLabel?.text else { fatalError("missing title on button, title is required for width calculation") }
 				guard let font = button.titleLabel?.font else { fatalError("missing dont on button, title is required for width calculation")  }
-				let size = string.sizeWithAttributes([NSFontAttributeName: font])
+				let size = string.size(attributes: [NSFontAttributeName: font])
 				let x = width * CGFloat(index) + ((width - size.width) / CGFloat(2))
-				strongSelf.indicatorView.frame = CGRectMake(x, strongSelf.frame.size.height - strongSelf.indicatorHeight, size.width, strongSelf.indicatorHeight)
+				strongSelf.indicatorView.frame = CGRect(x: x, y: strongSelf.frame.size.height - strongSelf.indicatorHeight, width: size.width, height: strongSelf.indicatorHeight)
 			}
 			else {
-				strongSelf.indicatorView.frame = CGRectMake(width * CGFloat(index), strongSelf.frame.size.height - strongSelf.indicatorHeight, button.frame.size.width, strongSelf.indicatorHeight)
+				strongSelf.indicatorView.frame = CGRect(x: width * CGFloat(index), y: strongSelf.frame.size.height - strongSelf.indicatorHeight, width: button.frame.size.width, height: strongSelf.indicatorHeight)
 			}
 			
-			if let scrollView = strongSelf.scrollView where moveScrollView {
-				scrollView.contentOffset = CGPointMake(CGFloat(index) * scrollView.frame.size.width, 0)
+			if let scrollView = strongSelf.scrollView {
+				if moveScrollView {
+					scrollView.contentOffset = CGPoint(x: CGFloat(index) * scrollView.frame.size.width, y: 0)
+				}
 			}
 			
 			}, completion: { [weak self] finished in
@@ -229,14 +231,14 @@ import UIKit
 		redrawButtons()
 		
 		if buttons.count > 0 {
-			moveToIndex(selectedIndex, animated: false, moveScrollView: false)
+			moveToIndex(index: selectedIndex, animated: false, moveScrollView: false)
 		}
 		
 		if let scrollView = scrollView {
-			scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * CGFloat(buttons.count), scrollView.frame.size.height)
+			scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(buttons.count), height: scrollView.frame.size.height)
 			
 			for i in 0..<views.count {
-				views[i].frame = CGRectMake(scrollView.frame.size.width * CGFloat(i), 0, scrollView.frame.size.width, scrollView.frame.size.height)
+				views[i].frame = CGRect(x: scrollView.frame.size.width * CGFloat(i), y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
 			}
 		}
 	}
@@ -251,35 +253,35 @@ import UIKit
 		
 		for i in 0..<buttons.count {
 			let button = buttons[i]
-			button.frame = CGRectMake(width * CGFloat(i), 0, width, height)
-			button.setTitleColor((i == selectedIndex) ? selectedTextColor : textColor, forState: .Normal)
+			button.frame = CGRect(x: width * CGFloat(i), y: 0, width: width, height: height)
+			button.setTitleColor((i == selectedIndex) ? selectedTextColor : textColor, for: .normal)
 			button.titleLabel?.font = (i == selectedIndex) ? selectedFont : font
 		}
 	}
 	
-	func buttonSelected(sender: UIButton) {
+	internal func buttonSelected(sender: UIButton) {
 		if sender.tag == selectedIndex {
 			return
 		}
 		
-		delegate?.scrollPager?(self, changedIndex: sender.tag)
+		delegate?.scrollPager?(scrollPager: self, changedIndex: sender.tag)
 		
-		setSelectedIndex(sender.tag, animated: true, moveScrollView: true)
+		setSelectedIndex(index: sender.tag, animated: true, moveScrollView: true)
 	}
 	
 	// MARK: - UIScrollView Delegate -
 
-	public func scrollViewDidScroll(scrollView: UIScrollView) {
+	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if !animationInProgress {
 			var page = scrollView.contentOffset.x / scrollView.frame.size.width
 
-			if page % 1 > 0.5 {
+			if page.truncatingRemainder(dividingBy: 1) > 0.5 {
 				page = page + CGFloat(1)
 			}
 			
 			if Int(page) != selectedIndex {
-				setSelectedIndex(Int(page), animated: true, moveScrollView: false)
-				delegate?.scrollPager?(self, changedIndex: Int(page))
+				setSelectedIndex(index: Int(page), animated: true, moveScrollView: false)
+				delegate?.scrollPager?(scrollPager: self, changedIndex: Int(page))
 			}
 		}
 	}

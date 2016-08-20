@@ -17,34 +17,34 @@ class ViewController: UIViewController, ScrollPagerDelegate {
 		super.viewDidLoad()
 		
 		let firstView = UILabel()
-		firstView.backgroundColor = UIColor.whiteColor()
+		firstView.backgroundColor = UIColor.white
 		firstView.text = "first View"
-		firstView.textAlignment = .Center
+		firstView.textAlignment = .center
 		
 		let secondView = UILabel()
-		secondView.backgroundColor = UIColor.whiteColor()
+		secondView.backgroundColor = UIColor.white
 		secondView.text = "second view"
-		secondView.textAlignment = .Center
+		secondView.textAlignment = .center
 		
 		let thirdView = UILabel()
-		thirdView.backgroundColor = UIColor.whiteColor()
+		thirdView.backgroundColor = UIColor.white
 		thirdView.text = "third view"
-		thirdView.textAlignment = .Center
+		thirdView.textAlignment = .center
 		
 		let fourthView = UILabel()
-		fourthView.backgroundColor = UIColor.whiteColor()
+		fourthView.backgroundColor = UIColor.white
 		fourthView.text = "fourth view"
-		fourthView.textAlignment = .Center
+		fourthView.textAlignment = .center
 		
 		scrollPager.delegate = self
-		scrollPager.addSegmentsWithTitlesAndViews([
+		scrollPager.addSegmentsWithTitlesAndViews(segments: [
 			("Home", firstView),
 			("Public Feed", secondView),
 			("Profile", thirdView),
 			("One More", fourthView)
 			])
 		
-		secondScrollPager.addSegmentsWithImages([
+		secondScrollPager.addSegmentsWithImages(segmentImages: [
 			UIImage(named: "envelope")!,
 			UIImage(named: "home")!,
 			UIImage(named: "like")!,
