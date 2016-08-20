@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode8
+
+script:
+- xcodebuild -project ScrollPager.xcodeproj -scheme ScrollPagerTests -destination 'platform=iOS Simulator,name=iPhone 6' test

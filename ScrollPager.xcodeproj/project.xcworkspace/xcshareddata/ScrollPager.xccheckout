@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FE30291C-AA8B-4552-A6D0-DEA9E5E44351</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ScrollPager</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>203B8E4269EA117004AE3A2A717AF64DE226A9BC</key>
+		<string>https://github.com/aryaxt/ScrollPager.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ScrollPager.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>203B8E4269EA117004AE3A2A717AF64DE226A9BC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/aryaxt/ScrollPager.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>203B8E4269EA117004AE3A2A717AF64DE226A9BC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>203B8E4269EA117004AE3A2A717AF64DE226A9BC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ScrollPager</string>
+		</dict>
+	</array>
+</dict>
+</plist>
