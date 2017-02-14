@@ -56,7 +56,15 @@ import UIKit
 	@IBInspectable public var selectedTextColor: UIColor = UIColor.darkGray {
 		didSet { redrawComponents() }
 	}
-	
+
+        @IBInspectable public var bgColor: UIColor = UIColor.lightGray {
+                didSet { redrawComponents() }
+        }
+    
+        @IBInspectable public var selectedBGColor: UIColor = UIColor.darkGray {
+                didSet { redrawComponents() }
+        }	
+
 	@IBInspectable public var font: UIFont = UIFont.systemFont(ofSize: 13) {
 		didSet { redrawComponents() }
 	}
@@ -255,7 +263,8 @@ import UIKit
 			let button = buttons[i]
 			button.frame = CGRect(x: width * CGFloat(i), y: 0, width: width, height: height)
 			button.setTitleColor((i == selectedIndex) ? selectedTextColor : textColor, for: .normal)
-			button.titleLabel?.font = (i == selectedIndex) ? selectedFont : font
+                        button.backgroundColor = (i == selectedIndex) ? selectedBGColor :bgColor
+                        button.titleLabel?.font = (i == selectedIndex) ? selectedFont : font
 		}
 	}
 	
