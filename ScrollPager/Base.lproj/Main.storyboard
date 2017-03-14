@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,33 +18,34 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-zv-A7f">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AC9-ae-cGC">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="1258"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQO-QE-UpB" customClass="ScrollPager" customModule="ScrollPager" customModuleProvider="target">
-                                <rect key="frame" x="65" y="68" width="471" height="38"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5an-MH-0T1" customClass="ScrollPager" customModule="ScrollPager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="EWS-Dd-Dui"/>
+                                    <constraint firstAttribute="height" constant="44" id="Vgl-d5-Qa9"/>
+                                    <constraint firstAttribute="height" constant="44" id="gPw-Ef-NtS"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
-                                        <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
-                                        <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="indicatorHeight">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.93717447916666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.93717449900000005" green="0.93717449900000005" blue="0.93717449900000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="indicatorSizeMatchesTitle" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -52,30 +57,28 @@
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="EWS-Dd-Dui"/>
+                                        <exclude reference="gPw-Ef-NtS"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="EWS-Dd-Dui"/>
+                                        <include reference="gPw-Ef-NtS"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=regular" ambiguous="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                </variation>
                                 <connections>
-                                    <outlet property="scrollView" destination="cuB-zv-A7f" id="f6B-K7-nTY"/>
+                                    <outlet property="scrollView" destination="AC9-ae-cGC" id="9JY-9W-mdo"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5s-Er-1u6" customClass="ScrollPager" customModule="ScrollPager" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.97647064924240112" green="0.92941182851791382" blue="0.92549026012420654" alpha="1" colorSpace="deviceRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHc-Wz-Mex" customClass="ScrollPager" customModule="ScrollPager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="1322" width="1024" height="44"/>
+                                <color key="backgroundColor" red="0.96894943710000003" green="0.91073811049999998" blue="0.90706872940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Kmj-mZ-xl2"/>
+                                    <constraint firstAttribute="height" constant="44" id="GfR-y6-RaM"/>
+                                    <constraint firstAttribute="height" constant="44" id="d3B-p8-Ie7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
-                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="indicatorSizeMatchesTitle" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="indicatorHeight">
@@ -85,7 +88,7 @@
                                         <real key="value" value="0.39999999999999991"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="animationDuration">
                                         <real key="value" value="0.14999999999999999"/>
@@ -93,108 +96,38 @@
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Kmj-mZ-xl2"/>
+                                        <exclude reference="d3B-p8-Ie7"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="Kmj-mZ-xl2"/>
+                                        <include reference="d3B-p8-Ie7"/>
                                     </mask>
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cuB-zv-A7f" secondAttribute="bottom" id="2Sy-at-XIM"/>
-                            <constraint firstItem="cuB-zv-A7f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7YR-p4-IaP"/>
-                            <constraint firstItem="QQO-QE-UpB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FmS-Lj-6pH"/>
-                            <constraint firstItem="QQO-QE-UpB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="JFK-rp-eX4">
-                                <variation key="widthClass=compact" constant="0.0"/>
-                            </constraint>
-                            <constraint firstAttribute="trailing" secondItem="QQO-QE-UpB" secondAttribute="trailing" constant="600" id="PBj-nY-3b0"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="I5s-Er-1u6" secondAttribute="bottom" id="Zq3-Xj-4d9"/>
-                            <constraint firstAttribute="trailing" secondItem="cuB-zv-A7f" secondAttribute="trailing" id="bpk-AS-OO4"/>
-                            <constraint firstAttribute="bottom" secondItem="QQO-QE-UpB" secondAttribute="bottom" constant="400" id="c7R-F9-4WS"/>
-                            <constraint firstItem="QQO-QE-UpB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="dbK-ZS-pQb"/>
-                            <constraint firstItem="QQO-QE-UpB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="gHi-rw-64L"/>
-                            <constraint firstAttribute="trailing" secondItem="I5s-Er-1u6" secondAttribute="trailing" id="kUV-Fh-4eg"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QQO-QE-UpB" secondAttribute="bottom" constant="540" id="oaN-tT-Wel"/>
-                            <constraint firstItem="QQO-QE-UpB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="pOV-x6-5ye"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QQO-QE-UpB" secondAttribute="trailing" constant="-16" id="tFs-ag-Lhh"/>
-                            <constraint firstItem="I5s-Er-1u6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vKM-q3-pRK"/>
-                            <constraint firstItem="cuB-zv-A7f" firstAttribute="top" secondItem="QQO-QE-UpB" secondAttribute="bottom" id="w47-qC-B6j"/>
-                            <constraint firstItem="QQO-QE-UpB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wPG-sN-prQ"/>
-                            <constraint firstAttribute="trailing" secondItem="QQO-QE-UpB" secondAttribute="trailing" id="xCd-GB-vqf"/>
-                            <constraint firstItem="I5s-Er-1u6" firstAttribute="top" secondItem="cuB-zv-A7f" secondAttribute="bottom" constant="8" id="ye2-Dt-hIR">
-                                <variation key="widthClass=compact" constant="0.0"/>
-                            </constraint>
+                            <constraint firstItem="5an-MH-0T1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="DLb-Qq-n56"/>
+                            <constraint firstItem="HHc-Wz-Mex" firstAttribute="top" secondItem="AC9-ae-cGC" secondAttribute="bottom" id="EJU-ed-5oc"/>
+                            <constraint firstItem="AC9-ae-cGC" firstAttribute="top" secondItem="5an-MH-0T1" secondAttribute="bottom" id="Wl3-7i-sTr"/>
+                            <constraint firstItem="AC9-ae-cGC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fVS-rF-UCb"/>
+                            <constraint firstItem="HHc-Wz-Mex" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="owg-g4-AGN"/>
+                            <constraint firstAttribute="trailing" secondItem="HHc-Wz-Mex" secondAttribute="trailing" id="qZ6-8b-lwm"/>
+                            <constraint firstAttribute="trailing" secondItem="5an-MH-0T1" secondAttribute="trailing" id="v2o-BM-GWp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HHc-Wz-Mex" secondAttribute="bottom" id="xJW-Ko-P3W"/>
+                            <constraint firstAttribute="trailing" secondItem="AC9-ae-cGC" secondAttribute="trailing" id="xkE-zv-b4Y"/>
+                            <constraint firstItem="5an-MH-0T1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zFK-Li-hK2"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="cuB-zv-A7f"/>
-                                <exclude reference="I5s-Er-1u6"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="7YR-p4-IaP"/>
-                                <exclude reference="bpk-AS-OO4"/>
-                                <exclude reference="w47-qC-B6j"/>
-                                <exclude reference="FmS-Lj-6pH"/>
-                                <exclude reference="JFK-rp-eX4"/>
-                                <exclude reference="PBj-nY-3b0"/>
-                                <exclude reference="c7R-F9-4WS"/>
-                                <exclude reference="dbK-ZS-pQb"/>
-                                <exclude reference="gHi-rw-64L"/>
-                                <exclude reference="pOV-x6-5ye"/>
-                                <exclude reference="tFs-ag-Lhh"/>
-                                <exclude reference="wPG-sN-prQ"/>
-                                <exclude reference="xCd-GB-vqf"/>
-                                <exclude reference="2Sy-at-XIM"/>
-                                <exclude reference="Zq3-Xj-4d9"/>
-                                <exclude reference="oaN-tT-Wel"/>
-                                <exclude reference="kUV-Fh-4eg"/>
-                                <exclude reference="vKM-q3-pRK"/>
-                                <exclude reference="ye2-Dt-hIR"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact">
-                            <mask key="constraints">
-                                <include reference="FmS-Lj-6pH"/>
-                                <include reference="PBj-nY-3b0"/>
-                                <include reference="c7R-F9-4WS"/>
-                                <include reference="pOV-x6-5ye"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="cuB-zv-A7f"/>
-                                <include reference="I5s-Er-1u6"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="7YR-p4-IaP"/>
-                                <include reference="bpk-AS-OO4"/>
-                                <include reference="w47-qC-B6j"/>
-                                <include reference="JFK-rp-eX4"/>
-                                <exclude reference="dbK-ZS-pQb"/>
-                                <exclude reference="gHi-rw-64L"/>
-                                <exclude reference="tFs-ag-Lhh"/>
-                                <include reference="wPG-sN-prQ"/>
-                                <include reference="xCd-GB-vqf"/>
-                                <exclude reference="2Sy-at-XIM"/>
-                                <include reference="Zq3-Xj-4d9"/>
-                                <exclude reference="oaN-tT-Wel"/>
-                                <include reference="kUV-Fh-4eg"/>
-                                <include reference="vKM-q3-pRK"/>
-                                <include reference="ye2-Dt-hIR"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
-                        <outlet property="scrollPager" destination="QQO-QE-UpB" id="nlG-6l-04s"/>
-                        <outlet property="secondScrollPager" destination="I5s-Er-1u6" id="lI3-iz-SC4"/>
+                        <outlet property="scrollPager" destination="5an-MH-0T1" id="sF4-ic-naZ"/>
+                        <outlet property="secondScrollPager" destination="HHc-Wz-Mex" id="hTM-fV-N51"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="61.875" y="45"/>
         </scene>
     </scenes>
 </document>
