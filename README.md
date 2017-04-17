@@ -3,18 +3,18 @@ A scroll pager similar to the one in Flipboard. The control creates a tabbar giv
 
 ![alt tag](https://raw.github.com/aryaxt/ScrollPager/master/scrollPager.png)
 
-##Usage:
+## Usage:
 
 Drag and drop a UIView into storyboard or xib.
 
 OPTIONAL: If you like to use a scroll view assign the outlet to a scrollView.
 
-###Tab with text
+### Tab with text
 ```swift
 scrollPager.addSegmentsWithTitles(["Home", "Public Feed", "Profile"])
 ```
 
-###Tab with images and views (will automatically add paging to scrollview and displays the views accordingly)
+### Tab with images and views (will automatically add paging to scrollview and displays the views accordingly)
 ```swift
 scrollPager.addSegmentsWithTitlesAndViews([
   ("Home", firstView),
@@ -23,7 +23,7 @@ scrollPager.addSegmentsWithTitlesAndViews([
 ])
 ```
 
-###Tab with images
+### Tab with images
 ```swift
 secondScrollPager.addSegmentsWithImages([
   UIImage(named: "envelope")!,
@@ -31,7 +31,7 @@ secondScrollPager.addSegmentsWithImages([
 ])
 ```
 
-###Tab with images and views (will automatically add paging to scrollview and displays the views accordingly)
+### Tab with images and views (will automatically add paging to scrollview and displays the views accordingly)
 ```swift
 scrollPager.addSegmentsWithImagesAndViews([
   (UIImage(named: "envelope")!, firstView),
