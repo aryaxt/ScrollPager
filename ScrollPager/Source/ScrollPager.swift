@@ -68,6 +68,10 @@ import UIKit
 	@IBInspectable public var indicatorColor: UIColor = UIColor.black {
 		didSet { indicatorView.backgroundColor = indicatorColor }
 	}
+
+	@IBInspectable public var indicatorIsAtBottom: Bool = true {
+		didSet { redrawComponents() }
+	}
 	
 	@IBInspectable public var indicatorSizeMatchesTitle: Bool = false {
 		didSet { redrawComponents() }
@@ -204,15 +208,17 @@ import UIKit
 			
 			strongSelf.redrawButtons()
 			
+			let indicatorY: CGFloat = strongSelf.indicatorIsAtBottom ? strongSelf.frame.size.height - strongSelf.indicatorHeight : 0
+			
 			if strongSelf.indicatorSizeMatchesTitle {
 				guard let string = button.titleLabel?.text else { fatalError("missing title on button, title is required for width calculation") }
 				guard let font = button.titleLabel?.font else { fatalError("missing dont on button, title is required for width calculation")  }
 				let size = string.size(attributes: [NSFontAttributeName: font])
 				let x = width * CGFloat(index) + ((width - size.width) / CGFloat(2))
-				strongSelf.indicatorView.frame = CGRect(x: x, y: strongSelf.frame.size.height - strongSelf.indicatorHeight, width: size.width, height: strongSelf.indicatorHeight)
+				strongSelf.indicatorView.frame = CGRect(x: x, y: indicatorY, width: size.width, height: strongSelf.indicatorHeight)
 			}
 			else {
-				strongSelf.indicatorView.frame = CGRect(x: width * CGFloat(index), y: strongSelf.frame.size.height - strongSelf.indicatorHeight, width: button.frame.size.width, height: strongSelf.indicatorHeight)
+				strongSelf.indicatorView.frame = CGRect(x: width * CGFloat(index), y: indicatorY, width: button.frame.size.width, height: strongSelf.indicatorHeight)
 			}
 			
 			if let scrollView = strongSelf.scrollView {
@@ -250,10 +256,11 @@ import UIKit
 		
 		let width = frame.size.width / CGFloat(buttons.count)
 		let height = frame.size.height - indicatorHeight
+		let y: CGFloat = indicatorIsAtBottom ? 0 : indicatorHeight
 		
 		for i in 0..<buttons.count {
 			let button = buttons[i]
-			button.frame = CGRect(x: width * CGFloat(i), y: 0, width: width, height: height)
+			button.frame = CGRect(x: width * CGFloat(i), y: y, width: width, height: height)
 			button.setTitleColor((i == selectedIndex) ? selectedTextColor : textColor, for: .normal)
 			button.titleLabel?.font = (i == selectedIndex) ? selectedFont : font
 		}
