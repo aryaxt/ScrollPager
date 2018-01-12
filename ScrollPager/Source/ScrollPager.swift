@@ -120,34 +120,34 @@ import UIKit
 	
 	// MARK: - Public Methods -
 	
-	public func addSegmentsWithTitlesAndViews(segments: [(title: String, view: UIView)]) {
+	public func addSegments(with segments: [(title: String, view: UIView)]) {
 		
-		addButtons(titleOrImages: segments.map { $0.title as AnyObject })
-		addViews(segmentViews: segments.map { $0.view })
-		
-		redrawComponents()
-	}
-	
-	public func addSegmentsWithImagesAndViews(segments: [(image: UIImage, view: UIView)]) {
-		
-		addButtons(titleOrImages: segments.map { $0.image })
-		addViews(segmentViews: segments.map { $0.view })
+		addButtons(segments.map { $0.title as AnyObject })
+		addViews(segments.map { $0.view })
 		
 		redrawComponents()
 	}
 	
-	public func addSegmentsWithTitles(segmentTitles: [String]) {
-		addButtons(titleOrImages: segmentTitles as [AnyObject])
+	public func addSegments(with segments: [(image: UIImage, view: UIView)]) {
+		
+		addButtons(segments.map { $0.image })
+		addViews(segments.map { $0.view })
+		
+		redrawComponents()
+	}
+	@objc(addSegmentsWithTitles:)
+	public func addSegments(with segmentTitles: [String]) {
+		addButtons(segmentTitles as [AnyObject])
+		redrawComponents()
+	}
+    @objc(addSegmentsWithImages:)
+	public func addSegments(with segmentImages: [UIImage]) {
+		addButtons(segmentImages)
 		redrawComponents()
 	}
 	
-	public func addSegmentsWithImages(segmentImages: [UIImage]) {
-		addButtons(titleOrImages: segmentImages)
-		redrawComponents()
-	}
-	
-	public func setSelectedIndex(index: Int, animated: Bool) {
-		setSelectedIndex(index: index, animated: animated, moveScrollView: true)
+	public func setSelectedIndex(_ index: Int, animated: Bool) {
+		setSelectedIndex(index, animated: animated, moveScrollView: true)
 	}
     
     public func viewForItem(at index: Int) -> UIView? {
@@ -159,13 +159,13 @@ import UIKit
 	
 	// MARK: - Private -
 	
-	private func setSelectedIndex(index: Int, animated: Bool, moveScrollView: Bool) {
+	private func setSelectedIndex(_ index: Int, animated: Bool, moveScrollView: Bool) {
 		selectedIndex = index
 		
-		moveToIndex(index: index, animated: animated, moveScrollView: moveScrollView)
+        move(to: index, animated: animated, moveScrollView: moveScrollView)
 	}
 	
-	private func addViews(segmentViews: [UIView]) {
+	private func addViews(_ segmentViews: [UIView]) {
 		guard let scrollView = scrollView else { fatalError("trying to add views but the scrollView is nil") }
 		
 		for view in scrollView.subviews {
@@ -179,7 +179,7 @@ import UIKit
 		}
 	}
 	
-	private func addButtons(titleOrImages: [AnyObject]) {
+	private func addButtons(_ titleOrImages: [AnyObject]) {
 		for button in buttons {
 			button.removeFromSuperview()
 		}
@@ -189,7 +189,7 @@ import UIKit
 		for i in 0..<titleOrImages.count {
 			let button = UIButton(type: .custom)
 			button.tag = i
-			button.addTarget(self, action: #selector(ScrollPager.buttonSelected(sender:)), for: .touchUpInside)
+			button.addTarget(self, action: #selector(buttonSelected(_:)), for: .touchUpInside)
 			buttons.append(button)
 			
 			if let title = titleOrImages[i] as? String {
@@ -204,7 +204,7 @@ import UIKit
 		}
 	}
 	
-	private func moveToIndex(index: Int, animated: Bool, moveScrollView: Bool) {
+	private func move(to index: Int, animated: Bool, moveScrollView: Bool) {
 		animationInProgress = true
 		
         UIView.animate(withDuration: animated ? TimeInterval(animationDuration) : 0.0, delay: 0.0, options: .curveEaseOut, animations: { [weak self] in
@@ -244,7 +244,7 @@ import UIKit
 		redrawButtons()
 		
 		if buttons.count > 0 {
-			moveToIndex(index: selectedIndex, animated: false, moveScrollView: false)
+            move(to: selectedIndex, animated: false, moveScrollView: false)
 		}
 		
 		if let scrollView = scrollView {
@@ -273,14 +273,14 @@ import UIKit
 		}
 	}
 	
-	@objc internal func buttonSelected(sender: UIButton) {
+	@objc internal func buttonSelected(_ sender: UIButton) {
 		if sender.tag == selectedIndex {
 			return
 		}
 		
 		delegate?.scrollPager?(self, changedIndex: sender.tag)
 		
-		setSelectedIndex(index: sender.tag, animated: true, moveScrollView: true)
+		setSelectedIndex(sender.tag, animated: true, moveScrollView: true)
 	}
 	
 	// MARK: - UIScrollView Delegate -
@@ -294,7 +294,7 @@ import UIKit
 			}
 			
 			if Int(page) != selectedIndex {
-				setSelectedIndex(index: Int(page), animated: true, moveScrollView: false)
+				setSelectedIndex(Int(page), animated: true, moveScrollView: false)
 				delegate?.scrollPager?(self, changedIndex: Int(page))
 			}
 		}
