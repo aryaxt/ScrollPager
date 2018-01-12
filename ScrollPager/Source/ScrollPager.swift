@@ -29,7 +29,7 @@
 import UIKit
 
 @objc public protocol ScrollPagerDelegate: NSObjectProtocol {
-	@objc optional func scrollPager(scrollPager: ScrollPager, changedIndex: Int)
+	@objc optional func scrollPager(_ scrollPager: ScrollPager, changedIndex: Int)
 }
 
 @IBDesignable public class ScrollPager: UIView, UIScrollViewDelegate{
@@ -278,7 +278,7 @@ import UIKit
 			return
 		}
 		
-		delegate?.scrollPager?(scrollPager: self, changedIndex: sender.tag)
+		delegate?.scrollPager?(self, changedIndex: sender.tag)
 		
 		setSelectedIndex(index: sender.tag, animated: true, moveScrollView: true)
 	}
@@ -295,7 +295,7 @@ import UIKit
 			
 			if Int(page) != selectedIndex {
 				setSelectedIndex(index: Int(page), animated: true, moveScrollView: false)
-				delegate?.scrollPager?(scrollPager: self, changedIndex: Int(page))
+				delegate?.scrollPager?(self, changedIndex: Int(page))
 			}
 		}
 	}
