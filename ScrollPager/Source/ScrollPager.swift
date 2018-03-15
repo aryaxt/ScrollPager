@@ -277,10 +277,11 @@ import UIKit
 		if sender.tag == selectedIndex {
 			return
 		}
-		
+        // change the selected index
+        setSelectedIndex(sender.tag, animated: true, moveScrollView: true)
+        // notify the delegate that index has changed
 		delegate?.scrollPager?(self, changedIndex: sender.tag)
 		
-		setSelectedIndex(sender.tag, animated: true, moveScrollView: true)
 	}
 	
 	// MARK: - UIScrollView Delegate -
