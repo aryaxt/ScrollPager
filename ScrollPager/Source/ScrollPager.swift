@@ -34,7 +34,7 @@ import UIKit
 
 @IBDesignable public class ScrollPager: UIView, UIScrollViewDelegate{
 	
-	private var selectedIndex = 0
+	private(set) var selectedIndex = 0
 	private let indicatorView = UIView()
 	private var buttons = [UIButton]()
 	private var views = [UIView]()
