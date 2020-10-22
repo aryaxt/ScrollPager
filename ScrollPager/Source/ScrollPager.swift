@@ -105,7 +105,7 @@ import UIKit
 	
 	private func initialize() {
 		#if TARGET_INTERFACE_BUILDER
-			addSegmentsWithTitles(["One", "Two", "Three", "Four"])
+            addSegmentsWithTitles(segmentTitles: ["One", "Two", "Three", "Four"])
 		#endif
 	}
 	
@@ -213,7 +213,7 @@ import UIKit
 			if strongSelf.indicatorSizeMatchesTitle {
 				guard let string = button.titleLabel?.text else { fatalError("missing title on button, title is required for width calculation") }
 				guard let font = button.titleLabel?.font else { fatalError("missing dont on button, title is required for width calculation")  }
-				let size = string.size(attributes: [NSFontAttributeName: font])
+                let size = string.size(withAttributes: [NSAttributedString.Key.font: font])
 				let x = width * CGFloat(index) + ((width - size.width) / CGFloat(2))
 				strongSelf.indicatorView.frame = CGRect(x: x, y: indicatorY, width: size.width, height: strongSelf.indicatorHeight)
 			}
@@ -243,9 +243,14 @@ import UIKit
 		if let scrollView = scrollView {
 			scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(buttons.count), height: scrollView.frame.size.height)
 			
+            let viewWidth = scrollView.frame.size.width
+            let viewHeight = scrollView.frame.size.height
+            
 			for i in 0..<views.count {
-				views[i].frame = CGRect(x: scrollView.frame.size.width * CGFloat(i), y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+				views[i].frame = CGRect(x: viewWidth * CGFloat(i), y: 0, width: viewWidth, height: viewHeight)
 			}
+            
+            scrollView.contentOffset = CGPoint(x: scrollView.frame.size.width * CGFloat(selectedIndex), y: 0)
 		}
 	}
 	
@@ -266,7 +271,7 @@ import UIKit
 		}
 	}
 	
-	internal func buttonSelected(sender: UIButton) {
+    @objc internal func buttonSelected(sender: UIButton) {
 		if sender.tag == selectedIndex {
 			return
 		}
@@ -277,20 +282,20 @@ import UIKit
 	}
 	
 	// MARK: - UIScrollView Delegate -
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if !animationInProgress {
+            var page = scrollView.contentOffset.x / scrollView.frame.size.width
 
-	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if !animationInProgress {
-			var page = scrollView.contentOffset.x / scrollView.frame.size.width
-
-			if page.truncatingRemainder(dividingBy: 1) > 0.5 {
-				page = page + CGFloat(1)
-			}
-			
-			if Int(page) != selectedIndex {
-				setSelectedIndex(index: Int(page), animated: true, moveScrollView: false)
-				delegate?.scrollPager?(scrollPager: self, changedIndex: Int(page))
-			}
-		}
-	}
+            if page.truncatingRemainder(dividingBy: 1) > 0.5 {
+                page = page + CGFloat(1)
+            }
+            
+            if Int(page) != selectedIndex {
+                setSelectedIndex(index: Int(page), animated: true, moveScrollView: false)
+                delegate?.scrollPager?(scrollPager: self, changedIndex: Int(page))
+            }
+        }
+    }
+    
 	
 }
