@@ -105,7 +105,7 @@ import UIKit
 	
 	private func initialize() {
 		#if TARGET_INTERFACE_BUILDER
-			addSegmentsWithTitles(["One", "Two", "Three", "Four"])
+            addSegmentsWithTitles(segmentTitles: ["One", "Two", "Three", "Four"])
 		#endif
 	}
 	
